@@ -4,16 +4,9 @@ import Clickable from "../components/Clickable";
 
 const Launch = props => {
   const selectorBody = useMemo(() => {
-    console.log("props.planets:", props.planets);
-    if (!props.planets) {
-      return null;
-    }
-  
-    return props.planets.map(planet => (
-      <option value={planet.kepler_name} key={planet.kepler_name}>
-        {planet.kepler_name}
-      </option>
-    ));
+    return props.planets?.map(planet => 
+      <option value={planet.kepler_name} key={planet.kepler_name}>{planet.kepler_name}</option>
+    );
   }, [props.planets]);
 
   const today = new Date().toISOString().split("T")[0];
@@ -34,7 +27,7 @@ const Launch = props => {
       <label htmlFor="rocket-name">Rocket Type</label>
       <input type="text" id="rocket-name" name="rocket-name" defaultValue="Explorer IS1" />
       <label htmlFor="planets-selector">Destination Exoplanet</label>
-      <select id="planets-selector" name="planets-selector" style={{ color: 'black' }}>
+      <select id="planets-selector" name="planets-selector">
         {selectorBody}
       </select>
       <Clickable>
